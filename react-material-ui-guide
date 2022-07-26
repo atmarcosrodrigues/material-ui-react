@@ -267,3 +267,30 @@ const MyComponent = (props) => {
 }
 
 export default withStyles(styles)(MyComponent);
+
+Creating the custom theme
+To create a custom theme, use a createMuiTheme function and pass its return value to a MuiThemeProvider element at the root of your App.
+
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme();
+
+const App = props => (
+  <MuiThemeProvider theme={theme}>
+    // your app
+  </MuiThemeProvider>
+);
+Now, all children of a MuiThemeProvider have a uniformly customizable style!
+
+A createMuiTheme function usually takes the object to define a theme:
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: '#e89eef',
+    secondary: '#336b87'
+  }
+});
+All colors, including primary and secondary colors we used earlier in the tutorial, are themeable. The full range of options can be found in the official theming documentation. Material-UI is a great way to add the polished look and feel to the controls of your React web application with little effort.
+
+
