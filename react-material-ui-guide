@@ -1,1 +1,269 @@
 
+Step 1: Install React.js
+npx create-react-app materialui
+cd materialui
+npm start
+React Material UI Example
+
+If you face any issue with compiling, please create a .env file on the root and add the following line of code.
+
+
+SKIP_PREFLIGHT_CHECK=true
+Step 2: Install Material-UI
+Type the following command to install Material-UI.
+
+npm install @material-ui/core --save
+
+# or
+
+yarn add @material-ui/core
+Now, modify the following code inside the App.js file.
+
+// App.js
+
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+
+class App extends Component {
+  render() {
+    return (
+      <Button variant="contained" color="primary">
+        Welcome Material UI
+      </Button>
+    );
+  }
+}
+
+export default App;
+Save the file and go to the browser, and you can see that we have successfully integrated the Material UI.
+
+SVG Icons
+You can install the prebuild SVG icons using the @material-ui/icons package.
+
+npm install @material-ui/icons --save
+
+# or
+
+yarn add @material-ui/icons
+Material UI Fonts
+You can include the stylesheets inside the index.html file.
+
+<link rel="stylesheet"
+  href=“https://fonts.googleapis.com/css?family=Roboto:400,500" />
+<link rel="stylesheet"
+  href=“https://fonts.googleapis.com/icon?family=Material+Icons" />
+We can use the buttons as well as icons using the following code.
+
+
+// App.js
+
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import Bookmarks from '@material-ui/icons/Bookmarks';
+
+class App extends Component {
+  render() {
+    return (
+      <Button variant="outlined" color="primary">
+        <Bookmarks></Bookmarks>
+          Chaper 2
+      </Button>
+    );
+  }
+}
+
+export default App;
+You can use material.io/tools/icons to find a specific icon. When importing an icon, keep in mind that the names of the icons are PascalCase.
+
+Special props for the Button component include:
+
+variant: The visual style of the component, either contained, outlined, fab, or empty for the default link style.
+color: One of primary, secondary, or default, the same color as if it’s left empty. We’ll cover the customization of these colors later.
+mini: If the variant is set to fab (floating action button), then the size of the button is reduced.
+Material UI Navbar
+Let us create a component inside the src folder called Navbar.js and add the following code.
+
+// Navbar.js
+
+import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+
+const NavBar = () => {
+    return(
+        <div>
+        <AppBar position="static">
+            <Toolbar>
+                React Material UI Example
+            </Toolbar>
+        </AppBar>
+        </div>
+    )
+}
+export default NavBar;
+Now, import the Navbar.js component inside the App.js component.
+
+
+// App.js
+
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import Bookmarks from '@material-ui/icons/Bookmarks';
+
+import Navbar from './Navbar';
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <Button variant="outlined" color="primary">
+          <Bookmarks></Bookmarks>
+        </Button>
+      </div>
+    );
+  }
+}
+
+export default App;
+Now, you can see that we have implemented the basic design of the Navigation bar.
+
+Material UI TextField
+Add the following code inside the App.js file.
+
+// App.js
+
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import Bookmarks from '@material-ui/icons/Bookmarks';
+
+import TextField from '@material-ui/core/TextField';
+import Navbar from './Navbar';
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <Button variant="outlined" color="primary">
+          <Bookmarks></Bookmarks>
+        </Button> <br />
+        <TextField
+          placeholder="Placeholder here"
+          label="Basic TextField" />
+      </div>
+    );
+  }
+}
+
+export default App;
+Save the file, and you can see the textbox. The TextField, which we have imported from @material-ui/core/TextField, behaves like the standard React input component.
+
+Material UI Cards
+Create one file called Card.js inside the src folder. Then, add the following code inside the Card.js file.
+
+// Card.js
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import IMG from './MZ.png';
+
+const styles = {
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+};
+
+function MediaCard(props) {
+  const { classes } = props;
+  return (
+    <Card className={classes.card}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image= {IMG}
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Zukerberg
+          </Typography>
+          <Typography component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button>
+      </CardActions>
+    </Card>
+  );
+}
+
+MediaCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(MediaCard);
+Save the file and import the Card.js file inside the App.js file.
+
+
+// App.js
+
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import Bookmarks from '@material-ui/icons/Bookmarks';
+
+import TextField from '@material-ui/core/TextField';
+import Navbar from './Navbar';
+import MediaCard from './Card';
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <Button variant="outlined" color="primary">
+          <Bookmarks></Bookmarks>
+        </Button> <br />
+        <TextField
+          placeholder="Placeholder here"
+          label="Basic TextField" />
+        <MediaCard />
+      </div>
+    );
+  }
+}
+
+export default App;
+Material UI Theming
+Material-UI uses the JavaScript-based approach to theming its components called CSS-in-JS. With the help of this approach, CSS classnames are generated using JavaScript objects. 
+
+To pass the styles object into our component, we will use the withStyles function to return the higher-order component that gives our classnames as a prop called classes.
+
+const MyComponent = (props) => {
+  const classes = props.classes;
+  return (
+    <div className={classes.container}>
+      // stuff
+    </div>
+  );
+}
+
+export default withStyles(styles)(MyComponent);
